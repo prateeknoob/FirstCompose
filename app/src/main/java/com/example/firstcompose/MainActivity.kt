@@ -1,6 +1,7 @@
 package com.example.firstcompose
 
 
+import android.R.attr.fontWeight
 import android.R.attr.label
 import androidx.compose.ui.text.font.FontStyle
 import android.os.Bundle
@@ -10,9 +11,14 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -27,6 +33,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.layout.ModifierLocalBeyondBoundsLayout
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -98,7 +105,70 @@ private fun Previewfun(){
             placeholder = {}
         )
     }
+    Previewfun2()
+    Column {
+        ListViewItem(R.drawable.ic_android_black_24dp, "Prateek Singh", "Android Developer")
+        ListViewItem(R.drawable.ic_android_black_24dp, "Pranjal", "Android Developer")
+        ListViewItem(R.drawable.ic_android_black_24dp, "Tushar", "Android Developer")
+    }
+
 }
+
+
+
+@Composable
+private fun Previewfun2(){
+    Column(
+        modifier = Modifier.fillMaxHeight().fillMaxWidth(),
+        verticalArrangement = Arrangement.SpaceEvenly,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(text = "A", fontSize = 24.sp)
+        Text(text = "B", fontSize = 24.sp)
+    }
+    Row(
+        modifier = Modifier.fillMaxHeight().fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceEvenly
+    ){
+        Text(text = "C", fontSize = 24.sp)
+        Text(text = "D", fontSize = 24.sp)
+    }
+
+    Box(modifier = Modifier.fillMaxHeight().fillMaxWidth(),
+        contentAlignment = Alignment.BottomEnd){
+        Image(painter = painterResource(id = R.drawable.ic_launcher_background), contentDescription = "")
+        Image(painter = painterResource(id = R.drawable.ic_launcher_foreground), contentDescription = "")
+    }
+}
+
+
+@Composable
+fun ListViewItem(imgId:Int,name:String,occupation:String){
+    Row(modifier = Modifier.padding(8.dp),
+        verticalAlignment = Alignment.CenterVertically
+        )
+    {
+        Image(
+            painter = painterResource(id = imgId),
+            contentDescription = "",
+            Modifier.size(40.dp)
+        )
+        Column ()
+        {
+            Text(
+                text = name,
+                fontWeight = FontWeight.Bold
+            )
+            Text(
+                text = occupation,
+                fontSize = 12.sp
+            )
+
+        }
+    }
+}
+
 
 @Composable
 fun TextInput(){
