@@ -10,6 +10,9 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -20,6 +23,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Scaffold
@@ -30,6 +34,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
@@ -53,17 +58,15 @@ class MainActivity : ComponentActivity() {
                 modifier = Modifier.statusBarsPadding()
             )
 
-            TextInput()
+            Previewfun()
         }
     }
 }
 
 
-
-
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
-private fun Previewfun(){
+private fun Previewfun() {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -100,8 +103,9 @@ private fun Previewfun(){
                 contentDescription = "Dummy Image"
             )
         }
-        TextField(value = "Prateek Singh", onValueChange = {},
-            label ={ Text(text = "Enter Name")},
+        TextField(
+            value = "Prateek Singh", onValueChange = {},
+            label = { Text(text = "Enter Name") },
             placeholder = {}
         )
     }
@@ -111,15 +115,17 @@ private fun Previewfun(){
         ListViewItem(R.drawable.ic_android_black_24dp, "Pranjal", "Android Developer")
         ListViewItem(R.drawable.ic_android_black_24dp, "Tushar", "Android Developer")
     }
-
+    ModiInfo()
+    CircularImage()
 }
 
 
-
 @Composable
-private fun Previewfun2(){
+private fun Previewfun2() {
     Column(
-        modifier = Modifier.fillMaxHeight().fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxHeight()
+            .fillMaxWidth(),
         verticalArrangement = Arrangement.SpaceEvenly,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -127,34 +133,47 @@ private fun Previewfun2(){
         Text(text = "B", fontSize = 24.sp)
     }
     Row(
-        modifier = Modifier.fillMaxHeight().fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxHeight()
+            .fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceEvenly
-    ){
+    ) {
         Text(text = "C", fontSize = 24.sp)
         Text(text = "D", fontSize = 24.sp)
     }
 
-    Box(modifier = Modifier.fillMaxHeight().fillMaxWidth(),
-        contentAlignment = Alignment.BottomEnd){
-        Image(painter = painterResource(id = R.drawable.ic_launcher_background), contentDescription = "")
-        Image(painter = painterResource(id = R.drawable.ic_launcher_foreground), contentDescription = "")
+    Box(
+        modifier = Modifier
+            .fillMaxHeight()
+            .fillMaxWidth(),
+        contentAlignment = Alignment.BottomEnd
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.ic_launcher_background),
+            contentDescription = ""
+        )
+        Image(
+            painter = painterResource(id = R.drawable.ic_launcher_foreground),
+            contentDescription = ""
+        )
     }
 }
 
 
 @Composable
-fun ListViewItem(imgId:Int,name:String,occupation:String){
-    Row(modifier = Modifier.padding(8.dp),
+fun ListViewItem(imgId: Int, name: String, occupation: String) {
+    Row(
+        modifier = Modifier.padding(8.dp),
         verticalAlignment = Alignment.CenterVertically
-        )
+    )
     {
         Image(
             painter = painterResource(id = imgId),
             contentDescription = "",
-            Modifier.size(40.dp)
+            modifier = Modifier.size(40.dp)
         )
-        Column ()
+        Column()
         {
             Text(
                 text = name,
@@ -171,13 +190,44 @@ fun ListViewItem(imgId:Int,name:String,occupation:String){
 
 
 @Composable
-fun TextInput(){
-    val state= remember{ mutableStateOf("")}
+private fun ModiInfo() {
+    Text(
+        text = "Hello",
+        color = Color.Red,
+        modifier = Modifier
+            .clickable {}
+            .background(Color.Blue)
+            .size(200.dp)
+            .border(4.dp, Color.Green)
+            .clip(CircleShape)
+            .background(Color.Yellow)
+    )
+}
+
+
+@Composable
+fun CircularImage() {
+
+    Image(
+        painter = painterResource(id = R.drawable.ic_launcher_background),
+        contentScale = ContentScale.Crop,
+        modifier = Modifier
+            .size(80.dp)
+            .clip(CircleShape)
+            .border(2.dp, Color.Gray, CircleShape), contentDescription = ""
+    )
+
+}
+
+
+@Composable
+fun TextInput() {
+    val state = remember { mutableStateOf("") }
     TextField(
         value = state.value,
         onValueChange = {
-            state.value=it
+            state.value = it
         },
-        label ={ Text(text = "Enter Message")}
+        label = { Text(text = "Enter Message") }
     )
 }
