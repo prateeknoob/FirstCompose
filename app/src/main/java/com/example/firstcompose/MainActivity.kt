@@ -1,11 +1,7 @@
 package com.example.firstcompose
 
 
-import android.R.attr.fontWeight
-import android.R.attr.label
-import androidx.compose.ui.text.font.FontStyle
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -26,7 +22,6 @@ import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -38,15 +33,13 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.layout.ModifierLocalBeyondBoundsLayout
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.view.WindowCompat
-import com.example.firstcompose.ui.theme.FirstComposeTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,10 +47,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             enableEdgeToEdge()
             Text(
-                text = "Hello World",
-                modifier = Modifier.statusBarsPadding()
+                text = "Hello World", modifier = Modifier.statusBarsPadding()
             )
-
             Previewfun()
         }
     }
@@ -94,8 +85,7 @@ private fun Previewfun() {
             onClick = {}, colors = ButtonDefaults.buttonColors(
                 contentColor = Color.White,
                 containerColor = Color.Black,
-            ),
-            enabled = true
+            ), enabled = true
         ) {
             Text(text = "Hello")
             Image(
@@ -104,10 +94,10 @@ private fun Previewfun() {
             )
         }
         TextField(
-            value = "Prateek Singh", onValueChange = {},
+            value = "Prateek Singh",
+            onValueChange = {},
             label = { Text(text = "Enter Name") },
-            placeholder = {}
-        )
+            placeholder = {})
     }
     Previewfun2()
     Column {
@@ -146,8 +136,7 @@ private fun Previewfun2() {
     Box(
         modifier = Modifier
             .fillMaxHeight()
-            .fillMaxWidth(),
-        contentAlignment = Alignment.BottomEnd
+            .fillMaxWidth(), contentAlignment = Alignment.BottomEnd
     ) {
         Image(
             painter = painterResource(id = R.drawable.ic_launcher_background),
@@ -164,24 +153,19 @@ private fun Previewfun2() {
 @Composable
 fun ListViewItem(imgId: Int, name: String, occupation: String) {
     Row(
-        modifier = Modifier.padding(8.dp),
-        verticalAlignment = Alignment.CenterVertically
-    )
-    {
+        modifier = Modifier.padding(8.dp), verticalAlignment = Alignment.CenterVertically
+    ) {
         Image(
             painter = painterResource(id = imgId),
             contentDescription = "",
             modifier = Modifier.size(40.dp)
         )
-        Column()
-        {
+        Column {
             Text(
-                text = name,
-                fontWeight = FontWeight.Bold
+                text = name, fontWeight = FontWeight.Bold
             )
             Text(
-                text = occupation,
-                fontSize = 12.sp
+                text = occupation, fontSize = 12.sp
             )
 
         }
@@ -190,7 +174,7 @@ fun ListViewItem(imgId: Int, name: String, occupation: String) {
 
 
 @Composable
-private fun ModiInfo() {
+fun ModiInfo() {
     Text(
         text = "Hello",
         color = Color.Red,
@@ -200,8 +184,7 @@ private fun ModiInfo() {
             .size(200.dp)
             .border(4.dp, Color.Green)
             .clip(CircleShape)
-            .background(Color.Yellow)
-    )
+            .background(Color.Yellow))
 }
 
 
@@ -214,7 +197,8 @@ fun CircularImage() {
         modifier = Modifier
             .size(80.dp)
             .clip(CircleShape)
-            .border(2.dp, Color.Gray, CircleShape), contentDescription = ""
+            .border(2.dp, Color.Gray, CircleShape),
+        contentDescription = ""
     )
 
 }
@@ -223,11 +207,7 @@ fun CircularImage() {
 @Composable
 fun TextInput() {
     val state = remember { mutableStateOf("") }
-    TextField(
-        value = state.value,
-        onValueChange = {
-            state.value = it
-        },
-        label = { Text(text = "Enter Message") }
-    )
+    TextField(value = state.value, onValueChange = {
+        state.value = it
+    }, label = { Text(text = "Enter Message") })
 }
