@@ -27,12 +27,12 @@ import androidx.compose.foundation.lazy.items
 @Preview(heightDp = 500)
 @Composable
 fun previewitem(){
-    LazyColumn (content={
-            items(getcategorylist()){item->
-                BlogCategory(item.image,item.title,item.subtitle)
-            }
+    LazyColumn {
+        items(getcategorylist()) { item ->
+            BlogCategory(item.image, item.title, item.subtitle)
         }
-    )
+    }
+
 }
 
 
