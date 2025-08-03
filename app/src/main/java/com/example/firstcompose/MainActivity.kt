@@ -49,7 +49,7 @@ class MainActivity : ComponentActivity() {
             Text(
                 text = "Hello World", modifier = Modifier.statusBarsPadding()
             )
-            Previewfun()
+            previewitem()
         }
     }
 }

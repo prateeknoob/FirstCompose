@@ -6,11 +6,15 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -18,14 +22,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.foundation.lazy.items
 
-@Preview
+@Preview(heightDp = 500)
 @Composable
 fun previewitem(){
-    BlogCategory(
-        img = R.drawable.ic_android_black_24dp,
-        title = "Programming",
-        subtitle = "Learn Different Languages"
+    LazyColumn (content={
+            items(getcategorylist()){item->
+                BlogCategory(item.image,item.title,item.subtitle)
+            }
+        }
     )
 }
 
@@ -49,13 +55,13 @@ fun BlogCategory(img:Int,title:String,subtitle:String) {
                     .padding(8.dp)
                     .weight(.2f)
             )
-            extracted(title, subtitle, Modifier.weight(.8f))
+            ItemDescription(title, subtitle, Modifier.weight(.8f))
         }
     }
 }
 
 @Composable
-private fun RowScope.extracted(
+private fun RowScope.ItemDescription(
     title: String,
     subtitle: String,
     modifier: Modifier
@@ -73,4 +79,45 @@ private fun RowScope.extracted(
             fontWeight = FontWeight.Thin,
         )
     }
+}
+
+
+data class Category(val image:Int,val title:String,val subtitle:String){
+
+}
+
+
+fun getcategorylist(): MutableList<Category>{
+    val list= mutableListOf<Category>()
+    list.add(Category(R.drawable.ic_android_black_24dp,"Programming","Learn Different Languages"))
+    list.add(Category(R.drawable.ic_android_black_24dp,"Technology","News about Technology"))
+    list.add(Category(R.drawable.ic_android_black_24dp,"full stack","backend, frontend"))
+    list.add(Category(R.drawable.ic_android_black_24dp,"devops","ci cd"))
+    list.add(Category(R.drawable.ic_android_black_24dp,"ai ml","basic ai"))
+    list.add(Category(R.drawable.ic_android_black_24dp,"Programming","Learn Different Languages"))
+    list.add(Category(R.drawable.ic_android_black_24dp,"Technology","News about Technology"))
+    list.add(Category(R.drawable.ic_android_black_24dp,"full stack","backend, frontend"))
+    list.add(Category(R.drawable.ic_android_black_24dp,"devops","ci cd"))
+    list.add(Category(R.drawable.ic_android_black_24dp,"ai ml","basic ai"))
+    list.add(Category(R.drawable.ic_android_black_24dp,"Programming","Learn Different Languages"))
+    list.add(Category(R.drawable.ic_android_black_24dp,"Technology","News about Technology"))
+    list.add(Category(R.drawable.ic_android_black_24dp,"full stack","backend, frontend"))
+    list.add(Category(R.drawable.ic_android_black_24dp,"devops","ci cd"))
+    list.add(Category(R.drawable.ic_android_black_24dp,"ai ml","basic ai"))
+    list.add(Category(R.drawable.ic_android_black_24dp,"Programming","Learn Different Languages"))
+    list.add(Category(R.drawable.ic_android_black_24dp,"Technology","News about Technology"))
+    list.add(Category(R.drawable.ic_android_black_24dp,"full stack","backend, frontend"))
+    list.add(Category(R.drawable.ic_android_black_24dp,"devops","ci cd"))
+    list.add(Category(R.drawable.ic_android_black_24dp,"ai ml","basic ai"))
+    list.add(Category(R.drawable.ic_android_black_24dp,"Programming","Learn Different Languages"))
+    list.add(Category(R.drawable.ic_android_black_24dp,"Technology","News about Technology"))
+    list.add(Category(R.drawable.ic_android_black_24dp,"full stack","backend, frontend"))
+    list.add(Category(R.drawable.ic_android_black_24dp,"devops","ci cd"))
+    list.add(Category(R.drawable.ic_android_black_24dp,"ai ml","basic ai"))
+    list.add(Category(R.drawable.ic_android_black_24dp,"Programming","Learn Different Languages"))
+    list.add(Category(R.drawable.ic_android_black_24dp,"Technology","News about Technology"))
+    list.add(Category(R.drawable.ic_android_black_24dp,"full stack","backend, frontend"))
+    list.add(Category(R.drawable.ic_android_black_24dp,"devops","ci cd"))
+    list.add(Category(R.drawable.ic_android_black_24dp,"ai ml","basic ai"))
+    return list
 }
